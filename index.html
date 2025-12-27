@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Build with Shidhu</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --bg: #0e0e0e;
+      --card: #151515;
+      --text: #eaeaea;
+      --muted: #9a9a9a;
+      --accent: #6ee7b7;
+      --border: #262626;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Inter', sans-serif;
+    }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    section {
+      padding: 90px 8%;
+    }
+
+    h1, h2, h3 {
+      font-weight: 600;
+      letter-spacing: -0.02em;
+    }
+
+    p {
+      color: var(--muted);
+      max-width: 720px;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    /* ---------- HERO ---------- */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 25px;
+    }
+
+    .hero h1 {
+      font-size: clamp(2.5rem, 5vw, 4rem);
+      max-width: 900px;
+    }
+
+    .hero span {
+      color: var(--accent);
+    }
+
+    .cta {
+      display: inline-block;
+      margin-top: 25px;
+      padding: 14px 28px;
+      border-radius: 8px;
+      background: var(--accent);
+      color: #000;
+      font-weight: 500;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .cta:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 30px rgba(110,231,183,0.3);
+    }
+
+    /* ---------- ABOUT ---------- */
+    .about {
+      border-top: 1px solid var(--border);
+    }
+
+    /* ---------- SERVICES ---------- */
+    .services {
+      border-top: 1px solid var(--border);
+    }
+
+    .service-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 24px;
+      margin-top: 40px;
+    }
+
+    .card {
+      background: var(--card);
+      padding: 28px;
+      border-radius: 14px;
+      border: 1px solid var(--border);
+      transition: transform 0.3s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-6px);
+    }
+
+    /* ---------- PROJECTS ---------- */
+    .projects {
+      border-top: 1px solid var(--border);
+    }
+
+    .project {
+      margin-top: 40px;
+    }
+
+    .project span {
+      color: var(--accent);
+      font-size: 0.9rem;
+    }
+
+    /* ---------- PROCESS ---------- */
+    .process {
+      border-top: 1px solid var(--border);
+    }
+
+    .steps {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 20px;
+      margin-top: 30px;
+    }
+
+    /* ---------- TESTIMONIAL ---------- */
+    .testimonial {
+      border-top: 1px solid var(--border);
+      font-style: italic;
+    }
+
+    /* ---------- CONTACT ---------- */
+    .whatsapp-float {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  width: 56px;
+  height: 56px;
+  background-color: #25d366;
+  color: #000;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 26px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+  z-index: 999;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.whatsapp-float:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 15px 40px rgba(37,211,102,0.4);
+}
+.cta-group {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  margin-top: 25px;
+  max-width: 260px;
+}
+
+.whatsapp-cta {
+  background: transparent;
+  color: var(--accent);
+  border: 1px solid var(--accent);
+  text-align: center;
+}
+
+.whatsapp-cta:hover {
+  background: rgba(110, 231, 183, 0.1);
+}
+
+
+    .contact {
+      border-top: 1px solid var(--border);
+      text-align: center;
+    }
+
+    footer {
+      padding: 40px;
+      text-align: center;
+      color: var(--muted);
+      font-size: 0.9rem;
+      border-top: 1px solid var(--border);
+    }
+
+    /* ---------- ANIMATION ---------- */
+    .fade {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: all 0.8s ease;
+    }
+
+    .fade.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- HERO -->
+  <section class="hero fade">
+    <h1>
+      I build <span>clean, effective websites</span><br>
+      that help businesses look credible online.
+    </h1>
+    <p>
+      Build with Shidhu — focused on simple, premium websites for libraries,
+      local businesses, and online clients who value clarity over noise.
+    </p>
+    <a class="cta" href="tel:+919341784664">Book a Call</a>
+    <div class="cta-group">
+
+ <a
+    class="cta whatsapp-cta"
+    href="https://wa.me/919341784664?text=Hi%20Shidhu,%20I%20want%20to%20discuss%20a%20website."
+    target="_blank"
+  >
+    WhatsApp Me
+  </a>
+</div>
+
+  </section>
+
+  <!-- ABOUT -->
+  <section class="about fade">
+    <h2>About</h2>
+    <p>
+      I work on a small number of projects at a time and focus on outcomes:
+      clarity, speed, and trust. I’ve delivered real client projects and
+      built multiple demos to test what actually converts.
+    </p>
+  </section>
+
+  <!-- SERVICES -->
+  <section class="services fade">
+    <h2>Services</h2>
+    <div class="service-grid">
+      <div class="card">
+        <h3>One-Page Websites</h3>
+        <p>Clean, fast, conversion-focused pages for businesses and institutes.</p>
+      </div>
+      <div class="card">
+        <h3>Multi-Section Sites</h3>
+        <p>Professional layouts with services, projects, and contact flow.</p>
+      </div>
+      <div class="card">
+        <h3>Custom Builds</h3>
+        <p>Tailored solutions based on your exact requirements.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROJECTS -->
+  <section class="projects fade">
+    <h2>Projects</h2>
+<div class="project">
+  <span>Real Project</span>
+  <h3>
+    <a 
+      href="https://divyabeautyparlour.in" 
+      target="_blank" 
+      rel="noopener noreferrer"
+      style="color: inherit; text-decoration: underline;"
+    >
+      Parlour Website 
+    </a>
+  </h3>
+  <p>Simple site to showcase their work  and improve clarity.</p>
+</div>
+
+<div class="project">
+  <span>Real Project</span>
+  <h3>
+    <a 
+      href="https://sakshienterprise.shop" 
+      target="_blank" 
+      rel="noopener noreferrer"
+      style="color: inherit; text-decoration: underline;"
+    >
+      Electronic shop 
+    </a>
+  </h3>
+  <p>Premimum site to showcase their products and show about their shop and its direct location </p>
+</div>
+
+<div class="project">
+  <span>Demo  Project</span>
+  <h3>
+    <a 
+      href="https://shidhu-jpg.github.io/demo/" 
+      target="_blank" 
+      rel="noopener noreferrer"
+      style="color: inherit; text-decoration: underline;"
+    >
+      Electronic showroom 
+    </a>
+  </h3>
+  <p>Premimum site to showcase  products as a degital showroom  </p>
+</div>
+
+
+
+
+
+  <!-- PROCESS -->
+  <section class="process fade">
+    <h2>Process</h2>
+    <div class="steps">
+      <div class="card">1. Discuss requirements</div>
+      <div class="card">2. Design & build</div>
+      <div class="card">3. Review & refine</div>
+      <div class="card">4. Launch</div>
+    </div>
+  </section>
+
+  <!-- TESTIMONIAL -->
+  <section class="testimonial fade">
+    <h2>Feedback</h2>
+    <p>
+      “Clear communication, clean work, and no unnecessary complexity.”
+    </p>
+  </section>
+
+  <!-- CONTACT -->
+  <section class="contact fade" id="contact">
+    <h2>Let’s Work Together</h2>
+    <p>Book a call and we’ll see if we’re a good fit.</p>
+    <a class="cta" href="tel:+919341784664">Book a Call</a>
+  </section>
+
+  <footer>
+    © 2025 BuildWithShidhu
+  </footer>
+
+  <script>
+    const fades = document.querySelectorAll('.fade');
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('show');
+        }
+      });
+    }, { threshold: 0.15 });
+
+    fades.forEach(el => observer.observe(el));
+  </script>
+<a
+  href="https://wa.me/919341784664"
+  class="whatsapp-float"
+  target="_blank"
+  aria-label="Chat on WhatsApp"
+>
+  💬
+</a>
+
+</body>
+</html>
