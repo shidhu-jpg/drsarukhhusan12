@@ -1,408 +1,308 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Build with Shidhu</title>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Build with Shidhu</title>
 
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
-  <style>
-    :root {
-      --bg: #0e0e0e;
-      --card: #151515;
-      --text: #eaeaea;
-      --muted: #9a9a9a;
-      --accent: #6ee7b7;
-      --border: #262626;
-    }
-
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      font-family: 'Inter', sans-serif;
-    }
-
-    body {
-      background: var(--bg);
-      color: var(--text);
-      line-height: 1.6;
-    }
-
-    section {
-      padding: 90px 8%;
-    }
-
-    h1, h2, h3 {
-      font-weight: 600;
-      letter-spacing: -0.02em;
-    }
-
-    p {
-      color: var(--muted);
-      max-width: 720px;
-    }
-
-    a {
-      text-decoration: none;
-      color: inherit;
-    }
-
-    /* ---------- HERO ---------- */
-    .hero {
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      gap: 25px;
-    }
-
-    .hero h1 {
-      font-size: clamp(2.5rem, 5vw, 4rem);
-      max-width: 900px;
-    }
-
-    .hero span {
-      color: var(--accent);
-    }
-
-    .cta {
-      display: inline-block;
-      margin-top: 25px;
-      padding: 14px 28px;
-      border-radius: 8px;
-      background: var(--accent);
-      color: #000;
-      font-weight: 500;
-      transition: transform 0.2s ease, box-shadow 0.2s ease;
-    }
-
-    .cta:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 10px 30px rgba(110,231,183,0.3);
-    }
-
-    /* ---------- ABOUT ---------- */
-    .about {
-      border-top: 1px solid var(--border);
-    }
-
-    /* ---------- SERVICES ---------- */
-    .services {
-      border-top: 1px solid var(--border);
-    }
-
-    .service-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-      gap: 24px;
-      margin-top: 40px;
-    }
-
-    .card {
-      background: var(--card);
-      padding: 28px;
-      border-radius: 14px;
-      border: 1px solid var(--border);
-      transition: transform 0.3s ease;
-    }
-
-    .card:hover {
-      transform: translateY(-6px);
-    }
-
-    /* ---------- PROJECTS ---------- */
-    .projects {
-      border-top: 1px solid var(--border);
-    }
-
-    .project {
-      margin-top: 40px;
-    }
-
-    .project span {
-      color: var(--accent);
-      font-size: 0.9rem;
-    }
-
-    /* ---------- PROCESS ---------- */
-    .process {
-      border-top: 1px solid var(--border);
-    }
-
-    .steps {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: 20px;
-      margin-top: 30px;
-    }
-
-    /* ---------- TESTIMONIAL ---------- */
-    .testimonial {
-      border-top: 1px solid var(--border);
-      font-style: italic;
-    }
-
-    /* ---------- CONTACT ---------- */
-    .whatsapp-float {
-  position: fixed;
-  bottom: 24px;
-  right: 24px;
-  width: 56px;
-  height: 56px;
-  background-color: #25d366;
-  color: #000;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 26px;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.3);
-  z-index: 999;
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
+<style>
+:root {
+  --bg:#0e0e0e;
+  --card:#151515;
+  --text:#eaeaea;
+  --muted:#9a9a9a;
+  --accent:#6ee7b7;
+  --border:#262626;
 }
 
-.whatsapp-float:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 15px 40px rgba(37,211,102,0.4);
-}
-.cta-group {
-  display: flex;
-  flex-direction: column;
-  gap: 14px;
-  margin-top: 25px;
-  max-width: 260px;
-}
+*{margin:0;padding:0;box-sizing:border-box;font-family:Inter,sans-serif}
+body{background:var(--bg);color:var(--text);line-height:1.6}
+section{padding:90px 8%}
+h1,h2,h3{font-weight:600}
+p{color:var(--muted);max-width:760px}
 
-.whatsapp-cta {
-  background: transparent;
-  color: var(--accent);
-  border: 1px solid var(--accent);
+.hero{min-height:100vh;display:flex;flex-direction:column;justify-content:center;gap:25px}
+.hero span{color:var(--accent)}
+.cta{background:var(--accent);color:#000;padding:14px 28px;border-radius:8px;display:inline-block;margin-top:20px}
+
+.fade{opacity:0;transform:translateY(20px);transition:.8s}
+.fade.show{opacity:1;transform:none}
+
+/* BENEFITS */
+.card{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:28px}
+.grid{display:grid;gap:30px}
+.grid-3{grid-template-columns:repeat(auto-fit,minmax(220px,1fr))}
+.grid-2{grid-template-columns:repeat(auto-fit,minmax(280px,1fr))}
+
+/* COUNTERS */
+.stat h3{font-size:2.6rem;color:var(--accent)}
+
+/* ROI */
+input{width:100%;padding:12px;border-radius:8px;border:1px solid var(--border);background:#111;color:var(--text);margin-top:10px}
+.result{margin-top:20px;font-size:1.2rem;color:var(--accent)}
+
+/* BEFORE AFTER */
+.ba-container{position:relative;overflow:hidden;border-radius:16px}
+.ba-container img{width:100%;display:block}
+.ba-after{position:absolute;top:0;left:0;width:50%;overflow:hidden}
+.ba-slider{position:absolute;top:0;left:50%;width:4px;height:100%;background:var(--accent);cursor:ew-resize}
+
+/* MAP */
+iframe{border-radius:16px;border:0;width:100%;height:280px}
+
+/* WHATSAPP */
+.whatsapp-float{
+position:fixed;bottom:24px;right:24px;width:56px;height:56px;
+background:#25d366;color:#000;border-radius:50%;
+display:flex;align-items:center;justify-content:center;font-size:26px
+}
+/* ===========================
+   DEMO PROJECTS SECTION
+   =========================== */
+
+.demo-projects {
+  background: #ffffff;
+  color: #000000;
+  border-top: 1px solid #e5e7eb;
   text-align: center;
 }
 
-.whatsapp-cta:hover {
-  background: rgba(110, 231, 183, 0.1);
+.demo-projects h2 {
+  color: #000000;
+}
+
+.demo-projects p {
+  color: #333333;
+}
+
+/* Grid */
+.demo-grid {
+  margin-top: 50px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 24px;
+}
+
+/* Card */
+.demo-card {
+  background: #ffffff;
+  color: #000000;
+  border: 1px solid #e5e7eb;
+  border-radius: 16px;
+  padding: 28px;
+  text-align: left;
+  text-decoration: none;       /* ❌ no underline */
+  transition: 
+    transform 0.3s ease,
+    box-shadow 0.3s ease,
+    border-color 0.3s ease;
+}
+
+/* Hover */
+.demo-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.12);
+  border-color: #000000;
+}
+
+/* Small label */
+.demo-card span {
+  font-size: 0.8rem;
+  letter-spacing: 1px;
+  font-weight: 600;
+  color: #111111;
+  display: inline-block;
+  margin-bottom: 6px;
+}
+
+/* Heading */
+.demo-card h3 {
+  margin-top: 8px;
+  color: #000000;
+  font-weight: 600;
+}
+
+/* Description */
+.demo-card p {
+  margin-top: 8px;
+  color: #333333;
+  line-height: 1.5;
+}
+
+/* CTA below demos */
+.demo-cta {
+  margin-top: 60px;
+}
+
+.demo-cta p {
+  color: #111111;
+  margin-bottom: 18px;
+}
+
+/* Make sure links never underline */
+.demo-card:link,
+.demo-card:visited,
+.demo-card:hover,
+.demo-card:active {
+  text-decoration: none;
+  color: #000000;
 }
 
 
-    .contact {
-      border-top: 1px solid var(--border);
-      text-align: center;
-    }
-
-    footer {
-      padding: 40px;
-      text-align: center;
-      color: var(--muted);
-      font-size: 0.9rem;
-      border-top: 1px solid var(--border);
-    }
-
-    /* ---------- ANIMATION ---------- */
-    .fade {
-      opacity: 0;
-      transform: translateY(20px);
-      transition: all 0.8s ease;
-    }
-
-    .fade.show {
-      opacity: 1;
-      transform: translateY(0);
-    }
-  </style>
+footer{border-top:1px solid var(--border);padding:40px;text-align:center;color:var(--muted)}
+</style>
 </head>
 
 <body>
 
-  <!-- HERO -->
-  <section class="hero fade">
-    <h1>
-      I build <span>clean, effective websites</span><br>
-      that help businesses look credible online.
-    </h1>
-    <p>
-      Build with Shidhu — focused on simple, premium websites for libraries,
-      local businesses, and online clients who value clarity over noise.
-    </p>
-    <a class="cta" href="tel:+919341784664">Book a Call</a>
-    <div class="cta-group">
+<section class="hero fade">
+<h1>Main <span>websites banata hoon</span><br>jo business ko zyada kamane mein help karti hain.</h1>
+<p>Website showpiece nahi hoti. Ye ek employee hoti hai jo 24×7 kaam karti hai.</p>
+<P>Mai apke liye a website bana sakta hoo free mai agar apko pasand atta ha to usko live kar dege (abhi call kare)</P>
+<a class="cta" href="tel:+919341784664">Call Now</a>
+</section>
 
- <a
-    class="cta whatsapp-cta"
-    href="https://wa.me/919341784664?text=Hi%20Shidhu,%20I%20want%20to%20discuss%20a%20website."
-    target="_blank"
-  >
-    WhatsApp Me
-  </a>
+<!-- STATS -->
+<section class="fade">
+<div class="grid grid-3">
+  <div class="card stat"><h3 data-target="60">0</h3><p>% zyada customer trust</p></div>
+  <div class="card stat"><h3 data-target="24">0</h3><p>ghante online presence</p></div>
+  <div class="card stat"><h3 data-target="2">0</h3><p>ghante ka kaam automate</p></div>
 </div>
+</section>
 
-  </section>
+<!-- ROI CALCULATOR -->
+<section class="fade">
+<h2>₹ Website ROI Calculator</h2>
+<p>Khud calculate karo — website paisa banayegi ya nahi.</p>
 
-  <!-- ABOUT -->
-  <section class="about fade">
-    <h2>About</h2>
-    <p>
-      I work on a small number of projects at a time and focus on outcomes:
-      clarity, speed, and trust. I’ve delivered real client projects and
-      built multiple demos to test what actually converts.
-    </p>
-  </section>
+<div class="card">
+<label>Average customer bill (₹)</label>
+<input id="bill" type="number" placeholder="eg. 500">
 
-  <!-- SERVICES -->
-  <section class="services fade">
-    <h2>Services</h2>
-    <div class="service-grid">
-      <div class="card">
-        <h3>One-Page Websites</h3>
-        <p>Clean, fast, conversion-focused pages for businesses and institutes.</p>
-      </div>
-      <div class="card">
-        <h3>Multi-Section Sites</h3>
-        <p>Professional layouts with services, projects, and contact flow.</p>
-      </div>
-      <div class="card">
-        <h3>Custom Builds</h3>
-        <p>Tailored solutions based on your exact requirements.</p>
-      </div>
-    </div>
-  </section>
+<label>Extra customers per month</label>
+<input id="customers" type="number" placeholder="eg. 30">
 
-<!-- PROJECTS -->
-<section class="projects fade">
-  <h2>Projects</h2>
+<label>Website cost (₹)</label>
+<input id="cost" type="number" placeholder="eg. 8000">
 
-  <div class="project">
-    <span>Real Project</span>
-    <h3>
-      <a
-        href="https://divyabeautyparlour.in"
-        target="_blank"
-        rel="noopener noreferrer"
-        style="color: inherit; text-decoration: underline;"
-      >
-        Beauty Parlour Website
-      </a>
-    </h3>
-    <p>Simple website to showcase services and improve online clarity.</p>
-  </div>
-
-  <div class="project">
-    <span>Real Project</span>
-    <h3>
-      <a
-        href="https://sakshienterprise.shop"
-        target="_blank"
-        rel="noopener noreferrer"
-        style="color: inherit; text-decoration: underline;"
-      >
-        Electronics Shop Website
-      </a>
-    </h3>
-    <p>Premium site to showcase products, business details, and location.</p>
-  </div>
-
-  <div class="project">
-    <span>Demo Project</span>
-    <h3>
-      <a
-        href="https://shidhu-jpg.github.io/demo/"
-        target="_blank"
-        rel="noopener noreferrer"
-        style="color: inherit; text-decoration: underline;"
-      >
-        Electronics Showroom Demo
-      </a>
-    </h3>
-    <p>Digital showroom concept to present products in a clean layout.</p>
-  </div>
-
-  <div class="project">
-    <span>Demo2 Project</span>
-    <h3>
-      <a
-        href="https://coachingwebsite12.netlify.app/"
-        target="_blank"
-        rel="noopener noreferrer"
-        style="color: inherit; text-decoration: underline;"
-      >
-        Professional Coaching Website
-      </a>
-    </h3>
-    <p>Designed to build trust, authority, and credibility.</p>
-  </div>
-
-  <div class="project">
-    <span>Demo1 Project</span>
-    <h3>
-      <a
-        href="https://gymdemono1.netlify.app/"
-        target="_blank"
-        rel="noopener noreferrer"
-        style="color: inherit; text-decoration: underline;"
-      >
-        Premium Gym Information Site
-      </a>
-    </h3>
-    <p>Informational website focused on clarity and user trust.</p>
-  </div>
-
+<div class="result" id="roiResult">Result yahan dikhega</div>
+</div>
 </section>
 
 
-
-
-  <!-- PROCESS -->
-  <section class="process fade">
-    <h2>Process</h2>
-    <div class="steps">
-      <div class="card">1. Discuss requirements</div>
-      <div class="card">2. Design & build</div>
-      <div class="card">3. Review & refine</div>
-      <div class="card">4. Launch</div>
-    </div>
-  </section>
-
-  <!-- TESTIMONIAL -->
-  <section class="testimonial fade">
-    <h2>Feedback</h2>
-    <p>
-      “Clear communication, clean work, and no unnecessary complexity.”
-    </p>
-  </section>
-
-  <!-- CONTACT -->
-  <section class="contact fade" id="contact">
-    <h2>Let’s Work Together</h2>
-    <p>Book a call and we’ll see if we’re a good fit.</p>
-    <a class="cta" href="tel:+919341784664">Book a Call</a>
-  </section>
-
-  <footer>
-    © 2025 BuildWithShidhu
-  </footer>
-
-  <script>
-    const fades = document.querySelectorAll('.fade');
-    const observer = new IntersectionObserver(entries => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('show');
-        }
-      });
-    }, { threshold: 0.15 });
-
-    fades.forEach(el => observer.observe(el));
-  </script>
-<a
-  href="https://wa.me/919341784664"
-  class="whatsapp-float"
-  target="_blank"
-  aria-label="Chat on WhatsApp"
+  <!-- AFTER -->
 >
-  💬
-</a>
+
+</section>
+
+<!-- TRUST -->
+<section class="fade">
+<h2>Local trust build hota hai</h2>
+<p>Log pehle Google pe dekhte hain, phir shop pe aate hain.</p>
+
+<div class="grid grid-2">
+  <iframe src="https://www.google.com/maps?q=india&output=embed"></iframe>
+  <div class="card">
+    <p>⭐ ⭐ ⭐ ⭐ ⭐</p>
+    <p>“Website ke baad calls clearly badh gaye.”</p>
+    <p>“Customers pehle hi convinced aate hain.”</p>
+  </div>
+</div>
+</section>
+<section class="demo-projects fade">
+  <h2>Demo Websites (Live Examples)</h2>
+  <p>
+    Ye demo websites real use-cases par based hain.  
+    Isi type ka website aapke business ya institute ke liye customize hota hai.
+  </p>
+
+  <div class="demo-grid">
+
+    <a href="https://stthomasenglishschool.netlify.app/" target="_blank" class="demo-card">
+      <span>School Website Demo</span>
+      <h3>English Medium School</h3>
+      <p>Trust building, admissions info, parents clarity</p>
+    </a>
+
+    <a href="https://shidhu-jpg.github.io/coachingwebsiteaktarsir/index.html" target="_blank" class="demo-card">
+      <span>Coaching Website Demo</span>
+      <h3>Coaching Institute</h3>
+      <p>Authority, results showcase, enquiry focused</p>
+    </a>
+
+    <a href="https://shidhu-jpg.github.io/cilnicwebsite/" target="_blank" class="demo-card">
+      <span>Clinic Website Demo</span>
+      <h3>Medical / Clinic</h3>
+      <p>Professional look, services clarity, patient trust</p>
+    </a>
+
+    <a href="https://shidhu-jpg.github.io/demo/" target="_blank" class="demo-card">
+      <span>Showroom Demo</span>
+      <h3>Electronics Showroom</h3>
+      <p>Product display, enquiry flow, premium layout</p>
+    </a>
+
+    <a href="https://coachingwebsite12.netlify.app/" target="_blank" class="demo-card">
+      <span>Professional Demo</span>
+      <h3>Coaching & Training</h3>
+      <p>Lead generation, credibility, clean structure</p>
+    </a>
+
+    <a href="https://gymdemono1.netlify.app/" target="_blank" class="demo-card">
+      <span>Fitness Demo</span>
+      <h3>Gym / Fitness Center</h3>
+      <p>Motivation, brand feel, modern design</p>
+    </a>
+
+  </div>
+
+  <div class="demo-cta">
+    <p>
+      Aapka website bhi isi quality aur clarity ke saath banega —  
+      sirf aapke business ke hisaab se.
+    </p>
+    <a href="tel:+919341784664" class="cta">Call to Discuss Your Website</a>
+  </div>
+</section>
+
+<footer>© 2025 BuildWithShidhu</footer>
+
+<a href="https://wa.me/919341784664" class="whatsapp-float">💬</a>
+
+<script>
+/* fade */
+document.querySelectorAll('.fade').forEach(el=>{
+ new IntersectionObserver(e=>e[0].isIntersecting&&el.classList.add('show')).observe(el)
+})
+
+/* counters */
+document.querySelectorAll('[data-target]').forEach(el=>{
+ let t=+el.dataset.target,c=0
+ let i=setInterval(()=>{c++;el.innerText=c;if(c>=t)clearInterval(i)},30)
+})
+
+/* ROI */
+function calc(){
+ let b=+bill.value||0,c=+customers.value||0,w=+cost.value||0
+ let m=b*c
+ roiResult.innerText= m>0
+ ? `Monthly extra income: ₹${m} | Website recover in ${Math.ceil(w/m)} month`
+ : 'Values daalo'
+}
+['bill','customers','cost'].forEach(id=>document.getElementById(id).addEventListener('input',calc))
+
+/* Before After */
+const ba=document.getElementById('ba'),after=document.getElementById('after'),slider=document.getElementById('slider')
+ba.onmousemove=e=>{
+ let r=ba.getBoundingClientRect()
+ let x=e.clientX-r.left
+ after.style.width=x+'px'
+ slider.style.left=x+'px'
+}
+</script>
 
 </body>
 </html>
