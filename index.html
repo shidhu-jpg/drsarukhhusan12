@@ -1,308 +1,283 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>Build with Shidhu</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BUILD WITH SHIDHU // PREMIUM_WEB_OS</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/TextPlugin.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Syncopate:wght@400;700&family=JetBrains+Mono:wght@300;500&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --accent: #6ee7b7; /* Your original mint green */
+            --bg: #0a0a0a;
+        }
 
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+        body {
+            background-color: var(--bg);
+            color: #fff;
+            font-family: 'JetBrains Mono', monospace;
+            overflow-x: hidden;
+            scrollbar-width: none;
+        }
 
-<style>
-:root {
-  --bg:#0e0e0e;
-  --card:#151515;
-  --text:#eaeaea;
-  --muted:#9a9a9a;
-  --accent:#6ee7b7;
-  --border:#262626;
-}
+        /* Desktop Cursor - hidden on mobile via media query */
+        #cursor {
+            width: 40px;
+            height: 40px;
+            background: #fff;
+            border-radius: 50%;
+            position: fixed;
+            pointer-events: none;
+            z-index: 9999;
+            mix-blend-mode: exclusion;
+            display: none;
+        }
 
-*{margin:0;padding:0;box-sizing:border-box;font-family:Inter,sans-serif}
-body{background:var(--bg);color:var(--text);line-height:1.6}
-section{padding:90px 8%}
-h1,h2,h3{font-weight:600}
-p{color:var(--muted);max-width:760px}
+        @media (min-width: 1024px) { #cursor { display: block; } body { cursor: none; } }
 
-.hero{min-height:100vh;display:flex;flex-direction:column;justify-content:center;gap:25px}
-.hero span{color:var(--accent)}
-.cta{background:var(--accent);color:#000;padding:14px 28px;border-radius:8px;display:inline-block;margin-top:20px}
+        .font-display { font-family: 'Syncopate', sans-serif; }
 
-.fade{opacity:0;transform:translateY(20px);transition:.8s}
-.fade.show{opacity:1;transform:none}
+        .noise-overlay {
+            position: fixed;
+            inset: 0;
+            background: url('https://grainy-gradients.vercel.app/noise.svg');
+            opacity: 0.08;
+            pointer-events: none;
+            z-index: 100;
+        }
 
-/* BENEFITS */
-.card{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:28px}
-.grid{display:grid;gap:30px}
-.grid-3{grid-template-columns:repeat(auto-fit,minmax(220px,1fr))}
-.grid-2{grid-template-columns:repeat(auto-fit,minmax(280px,1fr))}
+        .hero-title {
+            font-size: clamp(2.5rem, 10vw, 8rem);
+            line-height: 0.9;
+            letter-spacing: -0.05em;
+        }
 
-/* COUNTERS */
-.stat h3{font-size:2.6rem;color:var(--accent)}
+        .outline-text {
+            color: transparent;
+            -webkit-text-stroke: 1px rgba(255, 255, 255, 0.3);
+        }
 
-/* ROI */
-input{width:100%;padding:12px;border-radius:8px;border:1px solid var(--border);background:#111;color:var(--text);margin-top:10px}
-.result{margin-top:20px;font-size:1.2rem;color:var(--accent)}
+        .monolith-card {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+        }
 
-/* BEFORE AFTER */
-.ba-container{position:relative;overflow:hidden;border-radius:16px}
-.ba-container img{width:100%;display:block}
-.ba-after{position:absolute;top:0;left:0;width:50%;overflow:hidden}
-.ba-slider{position:absolute;top:0;left:50%;width:4px;height:100%;background:var(--accent);cursor:ew-resize}
+        .monolith-card:hover {
+            border-color: var(--accent);
+            background: rgba(110, 231, 183, 0.05);
+        }
 
-/* MAP */
-iframe{border-radius:16px;border:0;width:100%;height:280px}
+        .contact-node {
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.5s ease;
+        }
 
-/* WHATSAPP */
-.whatsapp-float{
-position:fixed;bottom:24px;right:24px;width:56px;height:56px;
-background:#25d366;color:#000;border-radius:50%;
-display:flex;align-items:center;justify-content:center;font-size:26px
-}
-/* ===========================
-   DEMO PROJECTS SECTION
-   =========================== */
+        .contact-node:hover {
+            background: var(--accent);
+            color: #000;
+            padding-left: 20px;
+        }
 
-.demo-projects {
-  background: #ffffff;
-  color: #000000;
-  border-top: 1px solid #e5e7eb;
-  text-align: center;
-}
+        #bg-mesh {
+            position: fixed;
+            inset: 0;
+            z-index: -1;
+            opacity: 0.3;
+        }
 
-.demo-projects h2 {
-  color: #000000;
-}
-
-.demo-projects p {
-  color: #333333;
-}
-
-/* Grid */
-.demo-grid {
-  margin-top: 50px;
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-  gap: 24px;
-}
-
-/* Card */
-.demo-card {
-  background: #ffffff;
-  color: #000000;
-  border: 1px solid #e5e7eb;
-  border-radius: 16px;
-  padding: 28px;
-  text-align: left;
-  text-decoration: none;       /* ❌ no underline */
-  transition: 
-    transform 0.3s ease,
-    box-shadow 0.3s ease,
-    border-color 0.3s ease;
-}
-
-/* Hover */
-.demo-card:hover {
-  transform: translateY(-6px);
-  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.12);
-  border-color: #000000;
-}
-
-/* Small label */
-.demo-card span {
-  font-size: 0.8rem;
-  letter-spacing: 1px;
-  font-weight: 600;
-  color: #111111;
-  display: inline-block;
-  margin-bottom: 6px;
-}
-
-/* Heading */
-.demo-card h3 {
-  margin-top: 8px;
-  color: #000000;
-  font-weight: 600;
-}
-
-/* Description */
-.demo-card p {
-  margin-top: 8px;
-  color: #333333;
-  line-height: 1.5;
-}
-
-/* CTA below demos */
-.demo-cta {
-  margin-top: 60px;
-}
-
-.demo-cta p {
-  color: #111111;
-  margin-bottom: 18px;
-}
-
-/* Make sure links never underline */
-.demo-card:link,
-.demo-card:visited,
-.demo-card:hover,
-.demo-card:active {
-  text-decoration: none;
-  color: #000000;
-}
-
-
-footer{border-top:1px solid var(--border);padding:40px;text-align:center;color:var(--muted)}
-</style>
+        .cta-btn {
+            background: var(--accent);
+            color: #000;
+            padding: 15px 30px;
+            font-weight: bold;
+            display: inline-block;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-size: 0.8rem;
+        }
+    </style>
 </head>
 
 <body>
+    <div id="cursor"></div>
+    <div class="noise-overlay"></div>
+    <canvas id="bg-mesh"></canvas>
 
-<section class="hero fade">
-<h1>Main <span>websites banata hoon</span><br>jo business ko zyada kamane mein help karti hain.</h1>
-<p>Website showpiece nahi hoti. Ye ek employee hoti hai jo 24×7 kaam karti hai.</p>
-<P>Mai apke liye a website bana sakta hoo free mai agar apko pasand atta ha to usko live kar dege (abhi call kare)</P>
-<a class="cta" href="tel:+919341784664">Call Now</a>
-</section>
+    <aside class="fixed left-0 top-0 h-full w-16 border-r border-white/5 flex flex-col items-center justify-between py-10 z-50 mix-blend-difference hidden md:flex">
+        <div class="rotate-[-90deg] whitespace-nowrap text-[10px] tracking-[0.5em] opacity-30 font-bold uppercase">BUILD_WITH_SHIDHU_v2.0</div>
+        <div class="rotate-[-90deg] whitespace-nowrap text-[10px] tracking-[0.5em] opacity-30 font-bold uppercase" id="sidebar-time">00:00:00</div>
+    </aside>
 
-<!-- STATS -->
-<section class="fade">
-<div class="grid grid-3">
-  <div class="card stat"><h3 data-target="60">0</h3><p>% zyada customer trust</p></div>
-  <div class="card stat"><h3 data-target="24">0</h3><p>ghante online presence</p></div>
-  <div class="card stat"><h3 data-target="2">0</h3><p>ghante ka kaam automate</p></div>
-</div>
-</section>
+    <main class="md:ml-16 relative">
+        <section class="min-h-screen flex flex-col justify-center p-6 md:p-20 relative">
+            <div class="max-w-screen-2xl mx-auto w-full z-10">
+                <div class="mb-6" id="hero-meta">
+                    <span class="text-[#6ee7b7] text-xs font-bold tracking-[0.4em] uppercase">// High_Fidelity_Web_Design</span>
+                </div>
 
-<!-- ROI CALCULATOR -->
-<section class="fade">
-<h2>₹ Website ROI Calculator</h2>
-<p>Khud calculate karo — website paisa banayegi ya nahi.</p>
+                <h1 class="hero-title font-display font-bold uppercase mb-10">
+                    <div class="reveal-up">Build With</div>
+                    <div class="outline-text reveal-up">Shidhu</div>
+                </h1>
 
-<div class="card">
-<label>Average customer bill (₹)</label>
-<input id="bill" type="number" placeholder="eg. 500">
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-10">
+                    <div class="lg:col-span-6 reveal-up">
+                        <p class="text-xl md:text-2xl font-light text-white/60 leading-relaxed mb-8">
+                            I build clean, effective websites that help businesses look credible online. Focused on clarity over noise.
+                        </p>
+                        <div class="flex flex-wrap gap-4">
+                            <a href="tel:+919341784664" class="cta-btn">Book a Call</a>
+                            <a href="https://wa.me/919341784664" class="border border-white/20 px-8 py-4 uppercase text-[10px] tracking-widest hover:bg-white hover:text-black transition-all">WhatsApp</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
 
-<label>Extra customers per month</label>
-<input id="customers" type="number" placeholder="eg. 30">
+        <section class="py-20 px-6 md:px-20 border-t border-white/5">
+            <h2 class="font-display text-4xl mb-12 uppercase tracking-tighter text-accent">Services</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div class="monolith-card p-8 reveal-up">
+                    <span class="text-[10px] text-accent font-bold tracking-widest block mb-4">01. STATIC</span>
+                    <h3 class="text-xl mb-2 uppercase font-bold">One-Page Sites</h3>
+                    <p class="text-sm text-white/50">Clean, fast, conversion-focused pages for institutes.</p>
+                </div>
+                <div class="monolith-card p-8 reveal-up">
+                    <span class="text-[10px] text-accent font-bold tracking-widest block mb-4">02. CORPORATE</span>
+                    <h3 class="text-xl mb-2 uppercase font-bold">Multi-Section</h3>
+                    <p class="text-sm text-white/50">Professional layouts with full project flows.</p>
+                </div>
+                <div class="monolith-card p-8 reveal-up">
+                    <span class="text-[10px] text-accent font-bold tracking-widest block mb-4">03. UNIQUE</span>
+                    <h3 class="text-xl mb-2 uppercase font-bold">Custom Builds</h3>
+                    <p class="text-sm text-white/50">Tailored solutions for your specific business logic.</p>
+                </div>
+            </div>
+        </section>
 
-<label>Website cost (₹)</label>
-<input id="cost" type="number" placeholder="eg. 8000">
+        <section class="py-20 px-6 md:px-20 border-t border-white/5">
+            <h2 class="font-display text-4xl mb-12 uppercase tracking-tighter">Selected_Works</h2>
+            <div class="flex flex-col">
+                <a href="https://divyabeautyparlour.in" target="_blank" class="contact-node py-12 flex flex-col md:flex-row justify-between items-start md:items-center group">
+                    <div>
+                        <span class="text-[10px] opacity-40 uppercase tracking-widest">Real Project // 2025</span>
+                        <h3 class="font-display text-2xl md:text-5xl uppercase font-bold group-hover:italic">Divya Parlour</h3>
+                    </div>
+                    <span class="font-mono text-sm opacity-40">VISIT SITE ↗</span>
+                </a>
 
-<div class="result" id="roiResult">Result yahan dikhega</div>
-</div>
-</section>
+                <a href="https://sakshienterprise.shop" target="_blank" class="contact-node py-12 flex flex-col md:flex-row justify-between items-start md:items-center group">
+                    <div>
+                        <span class="text-[10px] opacity-40 uppercase tracking-widest">Real Project // 2025</span>
+                        <h3 class="font-display text-2xl md:text-5xl uppercase font-bold group-hover:italic">Sakshi Enterprise</h3>
+                    </div>
+                    <span class="font-mono text-sm opacity-40">VISIT SITE ↗</span>
+                </a>
 
+                <a href="https://shidhu-jpg.github.io/demo/" target="_blank" class="contact-node py-12 flex flex-col md:flex-row justify-between items-start md:items-center group">
+                    <div>
+                        <span class="text-[10px] opacity-40 uppercase tracking-widest">Demo // Showroom</span>
+                        <h3 class="font-display text-2xl md:text-5xl uppercase font-bold group-hover:italic">Digital Showroom</h3>
+                    </div>
+                    <span class="font-mono text-sm opacity-40">VISIT SITE ↗</span>
+                </a>
+            </div>
+        </section>
 
-  <!-- AFTER -->
->
+        <section class="min-h-screen py-40 px-6 md:px-20 bg-white text-black">
+            <div class="max-w-screen-xl mx-auto">
+                <h2 class="font-display text-6xl md:text-9xl font-bold uppercase mb-20 tracking-tighter">Signal</h2>
+                <div class="flex flex-col">
+                    <a href="tel:+919341784664" class="contact-node border-black/10 py-10 flex justify-between items-center group">
+                        <span class="font-display text-2xl md:text-5xl uppercase font-bold">Call</span>
+                        <span class="font-mono text-sm opacity-60">+91 9341784664</span>
+                    </a>
+                    <a href="https://wa.me/919341784664" class="contact-node border-black/10 py-10 flex justify-between items-center group">
+                        <span class="font-display text-2xl md:text-5xl uppercase font-bold">WhatsApp</span>
+                        <span class="font-mono text-sm opacity-60">Instant Chat</span>
+                    </a>
+                </div>
 
-</section>
+                <div class="mt-40 flex flex-col md:flex-row justify-between items-end gap-10">
+                    <div class="font-mono text-[10px] uppercase tracking-[0.3em] opacity-40">
+                        Available for Projects 2026<br>
+                        Location: INDIA
+                    </div>
+                    <div class="text-[10vw] font-display font-bold leading-none opacity-5">SHIDHU</div>
+                </div>
+            </div>
+        </section>
+    </main>
 
-<!-- TRUST -->
-<section class="fade">
-<h2>Local trust build hota hai</h2>
-<p>Log pehle Google pe dekhte hain, phir shop pe aate hain.</p>
+    <footer class="p-10 md:ml-16 font-mono text-[10px] text-white/20 tracking-[0.5em] flex justify-between uppercase border-t border-white/5">
+        <span>© 2026 // BUILDWITHSHIDHU</span>
+        <span id="uptime-display">UPTIME: 00:00:00</span>
+    </footer>
 
-<div class="grid grid-2">
-  <iframe src="https://www.google.com/maps?q=india&output=embed"></iframe>
-  <div class="card">
-    <p>⭐ ⭐ ⭐ ⭐ ⭐</p>
-    <p>“Website ke baad calls clearly badh gaye.”</p>
-    <p>“Customers pehle hi convinced aate hain.”</p>
-  </div>
-</div>
-</section>
-<section class="demo-projects fade">
-  <h2>Demo Websites (Live Examples)</h2>
-  <p>
-    Ye demo websites real use-cases par based hain.  
-    Isi type ka website aapke business ya institute ke liye customize hota hai.
-  </p>
+    <script>
+        gsap.registerPlugin(ScrollTrigger, TextPlugin);
 
-  <div class="demo-grid">
+        // Custom Cursor Logic
+        const cursor = document.getElementById('cursor');
+        if(window.innerWidth > 1024) {
+            window.addEventListener('mousemove', (e) => {
+                gsap.to(cursor, { x: e.clientX - 20, y: e.clientY - 20, duration: 0.1 });
+            });
+        }
 
-    <a href="https://stthomasenglishschool.netlify.app/" target="_blank" class="demo-card">
-      <span>School Website Demo</span>
-      <h3>English Medium School</h3>
-      <p>Trust building, admissions info, parents clarity</p>
-    </a>
+        // Background Mesh
+        const canvas = document.getElementById('bg-mesh');
+        const ctx = canvas.getContext('2d');
+        function initCanvas() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        }
+        function drawMesh() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            ctx.strokeStyle = 'rgba(255,255,255,0.05)';
+            const step = 60;
+            for (let x = 0; x < canvas.width; x += step) {
+                ctx.beginPath(); ctx.moveTo(x, 0); ctx.lineTo(x, canvas.height); ctx.stroke();
+            }
+            for (let y = 0; y < canvas.height; y += step) {
+                ctx.beginPath(); ctx.moveTo(0, y); ctx.lineTo(canvas.width, y); ctx.stroke();
+            }
+        }
+        initCanvas(); drawMesh();
 
-    <a href="https://shidhu-jpg.github.io/coachingwebsiteaktarsir/index.html" target="_blank" class="demo-card">
-      <span>Coaching Website Demo</span>
-      <h3>Coaching Institute</h3>
-      <p>Authority, results showcase, enquiry focused</p>
-    </a>
+        // Reveal Animations
+        gsap.utils.toArray('.reveal-up').forEach(item => {
+            gsap.from(item, {
+                scrollTrigger: { trigger: item, start: "top 90%" },
+                y: 50, opacity: 0, duration: 1, ease: "power2.out"
+            });
+        });
 
-    <a href="https://shidhu-jpg.github.io/cilnicwebsite/" target="_blank" class="demo-card">
-      <span>Clinic Website Demo</span>
-      <h3>Medical / Clinic</h3>
-      <p>Professional look, services clarity, patient trust</p>
-    </a>
+        // Uptime & Sidebar Clock
+        setInterval(() => {
+            document.getElementById('sidebar-time').innerText = new Date().toTimeString().split(' ')[0];
+        }, 1000);
 
-    <a href="https://shidhu-jpg.github.io/demo/" target="_blank" class="demo-card">
-      <span>Showroom Demo</span>
-      <h3>Electronics Showroom</h3>
-      <p>Product display, enquiry flow, premium layout</p>
-    </a>
+        let startTime = Date.now();
+        setInterval(() => {
+            let elapsed = Date.now() - startTime;
+            let s = Math.floor(elapsed / 1000) % 60;
+            let m = Math.floor(elapsed / 60000) % 60;
+            let h = Math.floor(elapsed / 3600000);
+            document.getElementById('uptime-display').innerText = `UPTIME: ${String(h).padStart(2, '0')}:${String(m).padStart(2, '0')}:${String(s).padStart(2, '0')}`;
+        }, 1000);
 
-    <a href="https://coachingwebsite12.netlify.app/" target="_blank" class="demo-card">
-      <span>Professional Demo</span>
-      <h3>Coaching & Training</h3>
-      <p>Lead generation, credibility, clean structure</p>
-    </a>
-
-    <a href="https://gymdemono1.netlify.app/" target="_blank" class="demo-card">
-      <span>Fitness Demo</span>
-      <h3>Gym / Fitness Center</h3>
-      <p>Motivation, brand feel, modern design</p>
-    </a>
-
-  </div>
-
-  <div class="demo-cta">
-    <p>
-      Aapka website bhi isi quality aur clarity ke saath banega —  
-      sirf aapke business ke hisaab se.
-    </p>
-    <a href="tel:+919341784664" class="cta">Call to Discuss Your Website</a>
-  </div>
-</section>
-
-<footer>© 2025 BuildWithShidhu</footer>
-
-<a href="https://wa.me/919341784664" class="whatsapp-float">💬</a>
-
-<script>
-/* fade */
-document.querySelectorAll('.fade').forEach(el=>{
- new IntersectionObserver(e=>e[0].isIntersecting&&el.classList.add('show')).observe(el)
-})
-
-/* counters */
-document.querySelectorAll('[data-target]').forEach(el=>{
- let t=+el.dataset.target,c=0
- let i=setInterval(()=>{c++;el.innerText=c;if(c>=t)clearInterval(i)},30)
-})
-
-/* ROI */
-function calc(){
- let b=+bill.value||0,c=+customers.value||0,w=+cost.value||0
- let m=b*c
- roiResult.innerText= m>0
- ? `Monthly extra income: ₹${m} | Website recover in ${Math.ceil(w/m)} month`
- : 'Values daalo'
-}
-['bill','customers','cost'].forEach(id=>document.getElementById(id).addEventListener('input',calc))
-
-/* Before After */
-const ba=document.getElementById('ba'),after=document.getElementById('after'),slider=document.getElementById('slider')
-ba.onmousemove=e=>{
- let r=ba.getBoundingClientRect()
- let x=e.clientX-r.left
- after.style.width=x+'px'
- slider.style.left=x+'px'
-}
-</script>
-
+        // Hover Effect
+        document.querySelectorAll('a, .monolith-card').forEach(el => {
+            el.addEventListener('mouseenter', () => gsap.to(cursor, { scale: 2 }));
+            el.addEventListener('mouseleave', () => gsap.to(cursor, { scale: 1 }));
+        });
+    </script>
 </body>
 </html>
