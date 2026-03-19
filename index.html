@@ -18,89 +18,55 @@
 body {
     background: #0f172a;
     color: white;
+    text-align: center;
+}
+
+.section {
+    padding: 50px 20px;
 }
 
 /* HERO */
-.hero {
-    text-align: center;
-    padding: 80px 20px 40px;
-}
-
 .hero img {
-    width: 120px;
-    height: 120px;
+    width: 110px;
     border-radius: 50%;
     border: 3px solid #38bdf8;
     margin-bottom: 15px;
 }
 
 .hero h1 {
-    font-size: 36px;
+    font-size: 34px;
 }
 
-.hero span {
+.highlight {
     color: #38bdf8;
 }
 
-.hero p {
-    opacity: 0.7;
-    margin-top: 10px;
+.price {
+    color: #22c55e;
+    font-weight: bold;
 }
 
 .btn {
     display: inline-block;
-    margin: 10px 8px 0;
-    padding: 12px 22px;
+    margin-top: 15px;
+    padding: 14px 25px;
     background: linear-gradient(45deg, #38bdf8, #6366f1);
     border-radius: 8px;
     color: white;
     text-decoration: none;
 }
 
-/* SERVICES */
-.section {
-    padding: 50px 10%;
+/* URGENCY */
+.urgency {
+    margin-top: 15px;
+    color: #facc15;
+    font-weight: bold;
 }
 
-.services {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-    gap: 20px;
-}
-
-.service-box {
-    background: rgba(255,255,255,0.05);
-    padding: 20px;
-    border-radius: 12px;
-    text-align: center;
-}
-
-/* PACKAGES */
-.package {
-    width: 100%;
-    padding: 25px 10%;
-    border-top: 1px solid rgba(255,255,255,0.1);
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    flex-wrap: wrap;
-}
-
-.package h3 {
-    font-size: 20px;
-}
-
-.package p {
-    opacity: 0.7;
-}
-
-.package a {
-    background: #38bdf8;
-    padding: 10px 18px;
-    border-radius: 6px;
-    color: black;
-    text-decoration: none;
-    margin-top: 10px;
+/* HOW IT WORKS */
+.steps p {
+    margin: 10px 0;
+    opacity: 0.8;
 }
 
 /* PROJECTS */
@@ -108,6 +74,7 @@ body {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
     gap: 20px;
+    padding: 20px;
 }
 
 .card {
@@ -125,15 +92,13 @@ body {
 
 /* FOOTER */
 footer {
-    background: #020617;
     padding: 30px;
-    text-align: center;
+    background: #020617;
 }
 
 footer a {
     color: #38bdf8;
     margin: 0 10px;
-    text-decoration: none;
 }
 </style>
 
@@ -141,113 +106,76 @@ footer a {
 <body>
 
 <!-- HERO -->
-<section class="hero">
+<section class="section hero">
+
     <img src="portfolio.jpeg" alt="Shidhu">
-    <h1>Websites That Bring <span>More Patients</span></h1>
-    <p>Fast, modern & conversion-focused websites for clinics</p>
-    <h3>⚠️ Only 5 Clinics Accepted This Week</h3>
- <h2>Ready to Get More Patients?</h2>
- 
-    <a href="tel:9341784664" class="btn">Call Now</a>
-    <a href="https://wa.me/919341784664" class="btn">
-🚀 Get Your Website Now
-</a>
+
+    <h1>Get More Patients for Your <span class="highlight">Clinic</span></h1>
+
+    <p>We build your website for <b>FREE</b><br>
+    You only pay <span class="price">₹1500–₹3000/year</span> (domain & hosting)</p>
+
+    <p>✔ Ready in 48 hours<br>
+    ✔ Mobile-friendly<br>
+    ✔ Appointment setup included</p>
+
+    <div class="urgency">⚠️ Only 5 Clinics Accepted This Week</div>
+
+    <a href="https://wa.me/919341784664" class="btn">🚀 WhatsApp Now</a>
+
 </section>
 
-<!-- SERVICES -->
-<section class="section">
-    <div class="services">
-<h2>How It Works</h2>
+<!-- HOW IT WORKS -->
+<section class="section steps">
 
-<p>1. You contact us on WhatsApp</p>
-<p>2. We build your website in 48 hours</p>
-<p>3. You only pay domain & hosting</p> 
+    <h2>How It Works</h2>
 
-     
-        <div class="service-box">
-            <h3>Clinic Websites</h3>
-            <p>Get more patient bookings</p>
-        </div>
+    <p>1. Message on WhatsApp</p>
+    <p>2. Website ready in 48 hours</p>
+    <p>3. Pay only domain & hosting</p>
 
-    
-        <div class="service-box">
-            <h3>Fast Delivery</h3>
-            <p>Ready in 24–48 hours</p>
-        </div>
-
-        <div class="service-box">
-            <h3>Free Hosting</h3>
-            <p>No setup hassle</p>
-        </div>
-
-    </div>
 </section>
 
-<!-- PACKAGES -->
-<div class="package">
-    <div>
-        <h3>Single Page Website</h3>
-        <p>Perfect for small clinics</p>
-    </div>
-    <a href="https://wa.me/919341784664">Get Started</a>
-</div>
-
-<div class="package">
-    <div>
-        <h3>Multi Page Website</h3>
-        <p>Full business presence</p>
-    </div>
-    <a href="https://wa.me/919341784664">Get Started</a>
-</div>
-
-<div class="package">
-    <div>
-        <h3>E-commerce Website</h3>
-        <p>Sell products online</p>
-    </div>
-    <a href="https://wa.me/919341784664">Get Started</a>
-</div>
-
-   </div>
-    <h2> Our projects click to view.</h2>
-</div>
-
-<!-- PROJECTS -->
+<!-- PROOF -->
 <section class="section">
+
+    <h2>Clinic Websites We Built</h2>
+
     <div class="projects">
 
         <a href="https://drrausankumar.online/" target="_blank" class="card">
-            <h3>Clinic Website for Dr. Roshan</h3>
+            <h3>Dr. Roshan Clinic</h3>
             <p>Patient-focused design</p>
         </a>
 
         <a href="https://shidhu-jpg.github.io/drsarukhhusan/" target="_blank" class="card">
-            <h3>Clinic Website for Dr. Sarukh</h3>
-            <p>Modern trust-based layout</p>
+            <h3>Dr. Sarukh Clinic</h3>
+            <p>Modern layout</p>
         </a>
-
-        <a href="https://sakshienterprise.shop/" target="_blank" class="card">
-            <h3>Sakshi Enterprise</h3>
-            <p>E-commerce website</p>
-        </a>
-
-        <a href="https://divyabeautyparlour.in/" target="_blank" class="card">
-            <h3>Divya Beauty Parlour</h3>
-            <p>Service business website</p>
-        </a>
-
-       
 
     </div>
+
+</section>
+
+<!-- FINAL CTA -->
+<section class="section">
+
+    <h2>Start Getting More Patients Today</h2>
+
+    <a href="https://wa.me/919341784664" class="btn">📲 Get Your Website Now</a>
+
 </section>
 
 <!-- FOOTER -->
 <footer>
+
     <h3>BuildWithShidhu</h3>
+
     <a href="tel:9341784664">Call</a>
     <a href="https://wa.me/919341784664">WhatsApp</a>
+
     <p>Helping clinics grow with better websites</p>
-    <p>© 2026 BuildWithShidhu</p>
+
 </footer>
 
 </body>
