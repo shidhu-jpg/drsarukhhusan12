@@ -1,5 +1,33 @@
 import { motion } from 'framer-motion'
+import { useState, useEffect } from 'react'
 import heroImg from '../../images/hero.png'
+
+const DESCRIPTION = "Mumbai-based developer & digital growth specialist. I build high-converting websites, AI-powered bots, and complete digital systems that help businesses grow and stand out online."
+
+function useTypewriter(text, speed = 28, startDelay = 1100) {
+  const [displayed, setDisplayed] = useState('')
+  const [done, setDone] = useState(false)
+
+  useEffect(() => {
+    setDisplayed('')
+    setDone(false)
+    let i = 0
+    const timeout = setTimeout(() => {
+      const interval = setInterval(() => {
+        i++
+        setDisplayed(text.slice(0, i))
+        if (i >= text.length) {
+          clearInterval(interval)
+          setDone(true)
+        }
+      }, speed)
+      return () => clearInterval(interval)
+    }, startDelay)
+    return () => clearTimeout(timeout)
+  }, [text, speed, startDelay])
+
+  return { displayed, done }
+}
 
 const SERVICES = [
   { icon: '🌐', label: 'Website Development' },
@@ -14,12 +42,12 @@ const SERVICES = [
 ]
 
 const WORK_STRIP = [
-  { bg: 'bg-gradient-to-br from-violet-500 to-purple-700', label: 'Branding' },
-  { bg: 'bg-gradient-to-br from-sky-400 to-cyan-600', label: 'Web Design' },
-  { bg: 'bg-gradient-to-br from-rose-400 to-pink-600', label: 'UI/UX' },
-  { bg: 'bg-gradient-to-br from-emerald-400 to-teal-600', label: 'Marketing' },
-  { bg: 'bg-gradient-to-br from-amber-400 to-orange-500', label: 'SEO' },
-  { bg: 'bg-gradient-to-br from-indigo-400 to-blue-700', label: 'App Dev' },
+  { bg: 'bg-gradient-to-br from-violet-500 to-purple-700', label: 'Branding', icon: '✦' },
+  { bg: 'bg-gradient-to-br from-sky-400 to-cyan-600', label: 'Web Design', icon: '🌐' },
+  { bg: 'bg-gradient-to-br from-rose-400 to-pink-600', label: 'UI/UX', icon: '🎨' },
+  { bg: 'bg-gradient-to-br from-emerald-400 to-teal-600', label: 'Marketing', icon: '📈' },
+  { bg: 'bg-gradient-to-br from-amber-400 to-orange-500', label: 'SEO', icon: '🔍' },
+  { bg: 'bg-gradient-to-br from-indigo-400 to-blue-700', label: 'App Dev', icon: '⚙️' },
 ]
 
 const containerVariants = {
@@ -36,6 +64,7 @@ export default function Hero({ isDark }) {
   const sectionBg    = isDark ? 'bg-[#111111]' : 'bg-white'
   const headingColor = isDark ? 'text-white'   : 'text-dark'
   const paraColor    = isDark ? 'text-gray-400' : 'text-gray-500'
+  const { displayed, done } = useTypewriter(DESCRIPTION)
 
   return (
     <>
@@ -87,9 +116,10 @@ export default function Hero({ isDark }) {
               variants={itemVariants}
               className={`font-body text-base md:text-lg max-w-md leading-relaxed mb-6 ${paraColor}`}
             >
-              Mumbai-based developer &amp; digital growth specialist. I build
-              high-converting websites, AI-powered bots, and complete digital
-              systems that help businesses grow and stand out online.
+              {displayed}
+              {!done && (
+                <span className="inline-block w-[2px] h-[1.1em] bg-accent align-middle ml-0.5 animate-[blink_0.75s_step-end_infinite]" />
+              )}
             </motion.p>
 
             {/* Services offered */}
@@ -160,14 +190,16 @@ export default function Hero({ isDark }) {
         {WORK_STRIP.map((item, i) => (
           <motion.div
             key={item.label}
-            className={`${item.bg} aspect-[4/3] relative group overflow-hidden cursor-pointer`}
+            className={`${item.bg} aspect-square relative group overflow-hidden cursor-pointer`}
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: i * 0.08, duration: 0.5 }}
+            whileHover={{ scale: 1.04, zIndex: 10 }}
           >
-            <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors duration-300 flex items-end p-3">
-              <span className="font-body text-xs font-semibold text-white/0 group-hover:text-white/90 transition-all duration-300 tracking-widest uppercase">
+            <div className="absolute inset-0 bg-black/0 group-hover:bg-black/15 transition-colors duration-300 flex flex-col items-center justify-center gap-2 p-3">
+              <span className="text-2xl">{item.icon}</span>
+              <span className="font-body text-xs font-semibold text-white/80 tracking-widest uppercase">
                 {item.label}
               </span>
             </div>

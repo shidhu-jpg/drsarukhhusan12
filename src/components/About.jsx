@@ -1,4 +1,38 @@
 import { motion } from 'framer-motion'
+import { useState, useEffect, useRef } from 'react'
+
+const ABOUT_DESC = "I'm a full-stack developer and digital growth specialist based in Mumbai, India. I help businesses — especially clinics and healthcare brands — build powerful online presences that drive real results. From high-converting websites to complete digital marketing systems, I deliver work that actually moves the needle."
+
+function useTypewriterOnView(text, speed = 22) {
+  const ref = useRef(null)
+  const [displayed, setDisplayed] = useState('')
+  const [done, setDone] = useState(false)
+
+  useEffect(() => {
+    const el = ref.current
+    if (!el) return
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (!entry.isIntersecting) return
+        observer.disconnect()
+        let i = 0
+        const interval = setInterval(() => {
+          i++
+          setDisplayed(text.slice(0, i))
+          if (i >= text.length) {
+            clearInterval(interval)
+            setDone(true)
+          }
+        }, speed)
+      },
+      { threshold: 0.1 }
+    )
+    observer.observe(el)
+    return () => observer.disconnect()
+  }, [text, speed])
+
+  return { ref, displayed, done }
+}
 
 const TECH_BADGES = [
   { icon: '⚛️', label: 'React',    grad: 'from-cyan-400 to-blue-600',     x: '88%', y: '8%',  size: 52, delay: 0 },
@@ -8,6 +42,8 @@ const TECH_BADGES = [
 ]
 
 export default function About() {
+  const { ref, displayed, done } = useTypewriterOnView(ABOUT_DESC)
+
   return (
     <section id="about" className="bg-dark relative overflow-hidden py-24 px-6">
       {/* Animated 3D floating badge icons */}
@@ -54,18 +90,20 @@ export default function About() {
         </motion.h2>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-10 items-start">
-          <motion.p
-            className="font-body text-gray-300 text-base md:text-lg leading-relaxed"
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.15, duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
-          >
-            I'm a full-stack developer and digital growth specialist based in Mumbai, India.
-            I help businesses — especially clinics and healthcare brands — build powerful online
-            presences that drive real results. From high-converting websites to complete
-            digital marketing systems, I deliver work that actually moves the needle.
-          </motion.p>
+          <div ref={ref}>
+            <motion.p
+              className="font-body text-gray-300 text-base md:text-lg leading-relaxed"
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.15, duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+            >
+              {displayed}
+              {!done && (
+                <span className="inline-block w-[2px] h-[1.1em] bg-accent align-middle ml-0.5 animate-[blink_0.75s_step-end_infinite]" />
+              )}
+            </motion.p>
+          </div>
 
           <motion.div
             className="flex flex-col gap-5"
