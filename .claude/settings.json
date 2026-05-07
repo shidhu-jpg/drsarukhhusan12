@@ -1,0 +1,11 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npm run *)",
+      "Bash(Remove-Item \"d:\\\\VS code\\\\websites\\\\clientswebsite\\\\myportfolio\\\\src\\\\components\\\\Skills.jsx\" -Force)",
+      "Bash(Remove-Item \"d:\\\\VS code\\\\websites\\\\clientswebsite\\\\myportfolio\\\\src\\\\components\\\\Contact.jsx\" -Force)",
+      "Bash(Write-Host \"Deleted\")",
+      "PowerShell(Stop-Process -Name \"node\" -Force -ErrorAction SilentlyContinue)"
+    ]
+  }
+}
